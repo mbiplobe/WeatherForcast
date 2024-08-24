@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    // MARK: - PROPERTIES
     @StateObject var viewModel: WeatherViewModel = WeatherViewModel(
         webservice: WeatherService()
     )

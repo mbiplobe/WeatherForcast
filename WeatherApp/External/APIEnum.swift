@@ -9,7 +9,7 @@ import Foundation
 
 enum API {
     static let baseURL = "https://api.openweathermap.org/data/2.5"
-    static let apiKey = "" //To obtain the API Key, sign in to https://openweathermap.org/.
+    static let apiKey = "0d6a8d422c058119b666882afe499ea2" //To obtain the API Key, sign in to https://openweathermap.org/.
 }
 
 enum Endpoint {

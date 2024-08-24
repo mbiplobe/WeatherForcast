@@ -13,13 +13,18 @@ import CoreLocation
 class WeatherViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
-    private var webservice: WeatherServiceProtocol!
-    @Published var weatherData: WeatherResponse?
+    private var weatherUseCase: WeatherUseCase!
+    @Published var weatherData: WeatherEntity?
     @ObservedObject var locationManager: LocationManager = LocationManager()
     private var cancellables = Set<AnyCancellable>()
     @Published var isLoading = true
     
-    // MARK: - INITIALIZER
+//    // MARK: - INITIALIZER
+//    init(webservice: WeatherServiceProtocol = WeatherService()) {
+//        self.webservice = webservice
+//        obserLocationChanges()
+//    }
+    
     init(webservice: WeatherServiceProtocol = WeatherService()) {
         self.webservice = webservice
         obserLocationChanges()
@@ -37,16 +42,13 @@ class WeatherViewModel: ObservableObject {
     
     // MARK: - GETTERS
     var temp: Int {
-        Int(weatherData?.main.temp ?? 0.0)
+        Int(weatherData?.temp ?? 0.0)
     }
     
     var name: String {
         "\(weatherData?.name ?? "")"
     }
     
-    var conditionId: Int {
-        weatherData?.weather.first?.id ?? 0
-    }
 }
 
 //MARK: - API CALLS

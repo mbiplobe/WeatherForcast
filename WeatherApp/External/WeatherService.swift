@@ -7,17 +7,14 @@
 
 import Foundation
 
-typealias completion = (_ response: WeatherResponse?, _ error: Error?) -> Void
+typealias completion = (_ response: WeatherEntity?, _ error: Error?) -> Void
 
-protocol WeatherServiceProtocol {
-    func getWeather(_ latitude: String, _ longitude: String, completion: @escaping completion)
-    func getCityWeather(_ name: String, completion: @escaping completion)
-}
+
 
 struct WeatherService: WeatherServiceProtocol {
     
     func getWeather(_ latitude: String, _ longitude: String, completion: @escaping completion) {
-        WebService.request(Endpoint.weather(latitude: latitude, longitude: longitude), responseType: WeatherResponse.self) { result in
+        WebService.request(Endpoint.weather(latitude: latitude, longitude: longitude), responseType: WeatherEntity.self) { result in
             switch result {
             case .success(let weahterResponse):
                 completion(weahterResponse, nil)
@@ -30,7 +27,7 @@ struct WeatherService: WeatherServiceProtocol {
     }
     
     func getCityWeather(_ name: String, completion: @escaping completion) {
-        WebService.request(Endpoint.cityWeather(cityName: name), responseType: WeatherResponse.self) { result in
+        WebService.request(Endpoint.cityWeather(cityName: name), responseType: WeatherEntity.self) { result in
             switch result {
             case .success(let weahterResponse):
                 completion(weahterResponse, nil)
